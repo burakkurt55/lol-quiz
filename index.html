@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081522">
+  <meta name="description" content="LoL Quiz - League of Legends bilgi ve tahmin oyunları.">
+  <title>LoL Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="LoL Quiz ana sayfa" onclick="showHome();return false">
+      <span class="brand-mark">LQ</span><span>LoL <b>QUIZ</b></span>
+    </a>
+    <nav class="nav">
+      <button class="nav-link active" data-page="home" data-i18n="navHome">Ana Sayfa</button>
+      <button class="nav-link" data-page="leaderboard" data-i18n="navRanks">Rekorlar</button>
+    </nav>
+    <div class="top-actions">
+      <button id="langBtn" class="lang-btn" aria-label="Change language">EN</button>
+      <a class="riot-link" href="https://www.leagueoflegends.com/" target="_blank" rel="noopener">LEAGUE OF LEGENDS ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="homePage">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="eyebrow">BİLGİNİ TEST ET · YARIŞMAYA KATIL</span></div>
+          <h1 data-i18n="heroTitle">Rift'in bilgini<br><em>kanıtla.</em></h1>
+          <p data-i18n="heroText">Şampiyonları tanı, eşyaları hatırla, yetenekleri keşfet. LoL bilginin sınırlarını zorla.</p>
+          <button class="primary-btn" onclick="document.querySelector('#games').scrollIntoView({behavior:'smooth'})"><span data-i18n="startNow">HEMEN OYNA</span><span>→</span></button>
+          <div class="hero-stats">
+            <div><strong>04</strong><span data-i18n="gameModes">OYUN MODU</span></div>
+            <div><strong>TR / EN</strong><span data-i18n="languages">DİL SEÇENEĞİ</span></div>
+            <div><strong>∞</strong><span data-i18n="practice">PRATİK</span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sigil"></div><div class="rune rune-one">✦</div><div class="rune rune-two">ᛟ</div>
+          <div class="hero-emblem"><span>✧</span><b>LOL</b><small>QUIZ</small></div>
+          <div class="art-caption">KNOW THE RIFT <i>◆</i> PROVE YOUR SKILL</div>
+        </div>
+      </section>
+
+      <section class="section-head" id="games">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="chooseChallenge">MEYDAN OKUMANI SEÇ</span></div><h2 data-i18n="gameHall">Oyun <em>salonu</em></h2></div>
+        <p data-i18n="gameHallText">Her modda farklı bir LoL bilgisi seni bekliyor.</p>
+      </section>
+      <section class="game-grid">
+        <article class="game-card" data-mode="general">
+          <div class="card-art art-general"><span class="card-number">01</span><span class="big-symbol">✧</span><span class="art-label">KNOWLEDGE</span></div>
+          <div class="card-body"><div class="card-tag" data-i18n="modeQuiz">BİLGİ YARIŞMASI</div><h3 data-i18n="generalTitle">Genel LoL Quiz</h3><p data-i18n="generalDesc">Oyun, roller, harita ve şampiyonlar hakkında soruları cevapla.</p><button class="text-btn" onclick="startGame('general')" data-i18n="play">OYNA <span>→</span></button></div>
+        </article>
+        <article class="game-card" data-mode="items">
+          <div class="card-art art-items"><span class="card-number">02</span><span class="big-symbol">⬡</span><span class="art-label">ITEM MEMORY</span></div>
+          <div class="card-body"><div class="card-tag" data-i18n="modeGuess">GÖRSEL TAHMİN</div><h3 data-i18n="itemTitle">Eşyayı Bil</h3><p data-i18n="itemDesc">Eşya ikonunu gör ve doğru ismi seçenekler arasından bul.</p><button class="text-btn" onclick="startGame('items')" data-i18n="play">OYNA <span>→</span></button></div>
+        </article>
+        <article class="game-card" data-mode="abilities">
+          <div class="card-art art-abilities"><span class="card-number">03</span><span class="big-symbol">✹</span><span class="art-label">ABILITY SENSE</span></div>
+          <div class="card-body"><div class="card-tag" data-i18n="modeGuess">GÖRSEL TAHMİN</div><h3 data-i18n="abilityTitle">Yeteneği Bil</h3><p data-i18n="abilityDesc">Yetenek simgesinin hangi şampiyona ait olduğunu tahmin et.</p><button class="text-btn" onclick="startGame('abilities')" data-i18n="play">OYNA <span>→</span></button></div>
+        </article>
+        <article class="game-card" data-mode="champions">
+          <div class="card-art art-champions"><span class="card-number">04</span><span class="big-symbol">♜</span><span class="art-label">CHAMPION LORE</span></div>
+          <div class="card-body"><div class="card-tag" data-i18n="modeClue">İPUCU OYUNU</div><h3 data-i18n="championTitle">Şampiyonu Bil</h3><p data-i18n="championDesc">Verilen ipuçlarını takip et ve gizemli şampiyonu bul.</p><button class="text-btn" onclick="startGame('champions')" data-i18n="play">OYNA <span>→</span></button></div>
+        </article>
+      </section>
+
+      <section class="bottom-banner">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="yourBest">EN İYİ SONUCUN</span></div><h2 id="bestScore">0 <small data-i18n="points">PUAN</small></h2><p data-i18n="bestDesc">Yeni rekorunu kırmaya hazır mısın?</p></div>
+        <button class="secondary-btn" onclick="showLeaderboard()" data-i18n="seeRanks">REKORLARI GÖR →</button>
+      </section>
+    </section>
+
+    <section id="gamePage" class="hidden">
+      <div class="game-top"><button class="back-btn" onclick="showHome()">← <span data-i18n="back">GERİ</span></button><div class="game-progress"><span id="progressText">1 / 10</span><div class="progress-track"><i id="progressBar"></i></div></div><div class="timer" id="timer">15</div></div>
+      <div class="quiz-shell">
+        <div class="quiz-meta"><span id="modeLabel">GENEL LOL QUIZ</span><span id="questionNo">SORU 01</span></div>
+        <div id="visualPrompt" class="visual-prompt hidden"></div>
+        <h2 id="questionText">Soru yükleniyor...</h2>
+        <p id="questionSub" class="question-sub"></p>
+        <div id="answers" class="answers"></div>
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+        <button id="nextBtn" class="primary-btn next-btn hidden" onclick="nextQuestion()"><span data-i18n="nextQuestion">SONRAKİ SORU</span><span>→</span></button>
+      </div>
+    </section>
+
+    <section id="resultPage" class="hidden">
+      <div class="result-card"><div class="result-icon">✦</div><div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="challengeComplete">MEYDAN OKUMA TAMAMLANDI</span></div><h1 data-i18n="yourResult">Sonucun</h1><div class="result-score" id="finalScore">0</div><p id="resultMessage"></p><div class="result-stats"><div><b id="correctCount">0</b><span data-i18n="correct">DOĞRU</span></div><div><b id="wrongCount">0</b><span data-i18n="wrong">YANLIŞ</span></div><div><b id="accuracy">0%</b><span data-i18n="successRate">BAŞARI</span></div></div><div class="result-actions"><button class="primary-btn" onclick="startGame(lastMode)"><span data-i18n="playAgain">TEKRAR OYNA</span><span>↻</span></button><button class="secondary-btn" onclick="showHome()" data-i18n="home">ANA SAYFA</button></div></div>
+    </section>
+
+    <section id="leaderboardPage" class="hidden">
+      <div class="section-head"><div><div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="hallOfFame">ONUR TABLOSU</span></div><h2 data-i18n="topScores">En iyi <em>skorlar</em></h2></div><button class="back-btn" onclick="showHome()">← <span data-i18n="home">ANA SAYFA</span></button></div>
+      <div class="leaderboard"><div class="leader-head"><span>#</span><span data-i18n="player">OYUNCU</span><span data-i18n="score">SKOR</span><span data-i18n="date">TARİH</span></div><div id="leaderRows"></div><p class="local-note" data-i18n="localNote">Bu liste yalnızca bu tarayıcıda saklanır.</p></div>
+    </section>
+  </main>
+  <footer><span>LOL QUIZ</span><span data-i18n="fanProject">Bir hayran projesidir. Riot Games ile bağlantılı değildir.</span><span>© 2025</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
